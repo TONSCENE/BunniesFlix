@@ -5208,6 +5208,24 @@ const officialDatabase = {
       }
     ]
   },
+  "seasons_greetings_2025": {
+    "id": "seasons_greetings_2025",
+    "title": "NewJeans 2025 SEASON'S GREETINGS Special Video ซับไทย",
+    "badge": "ซับไทย Full HD",
+    "desc": "วิดีโอพิเศษ NewJeans 2025 SEASON'S GREETINGS (KMJ SHOW) พร้อมซับไทยเต็มรูปแบบ ความยาวกว่า 1 ชั่วโมง 20 นาที",
+    "thumb": "images/seasons_greetings_2025.jpg",
+    "count": 1,
+    "episodes": [
+      {
+        "num": 1,
+        "title": "NewJeans 2025 SEASON'S GREETINGS Special Video (ซับไทย)",
+        "embedUrl": "https://www.dailymotion.com/embed/video/k4PNEeWevYTqOYC9XL0?autoplay=1",
+        "directUrl": "https://www.dailymotion.com/video/k4PNEeWevYTqOYC9XL0",
+        "duration": "1h 20m",
+        "thumb": "images/seasons_greetings_2025.jpg"
+      }
+    ]
+  },
   "newjeans_yearbook": {
     "id": "newjeans_yearbook",
     "title": "NEWJEANS YEARBOOK 22-23",
