@@ -5154,6 +5154,47 @@ const officialDatabase = {
       }
     ]
   },
+  "secret_transfer_student": {
+    "id": "secret_transfer_student",
+    "title": "นักเรียนโอนย้ายลับ (Secret Transfer Student)",
+    "badge": "2 ตอน ซับไทย",
+    "desc": "NewJeans ปลอมตัวเป็นนักเรียนโอนย้ายลับไปโรงเรียนในญี่ปุ่น! รายการวาไรตี้จาก ootb STUDIO แปลไทยโดยช่อง SCENE722",
+    "thumb": "images/secret_transfer_student.jpg",
+    "count": 2,
+    "episodes": [
+      {
+        "num": "3-1",
+        "title": "🐰NewJeans ย้ายโรงเรียนไปต่างประเทศอย่างลับๆ เหรอ..🐰 นักเรียนลับ Ep.03-1 (ซับไทย)",
+        "ytId": "1byY9Sxg3hI",
+        "duration": "21m 29s",
+        "thumb": "images/secret_transfer_student.jpg"
+      },
+      {
+        "num": "3-2",
+        "title": "ในที่สุด! นักเรียนโอนย้ายลับพบนักเรียนญี่ปุ่น 🐰 NewJeans🐰 นักเรียนโอนย้ายลับ Ep 3-2 (ซับไทย)",
+        "ytId": "S6lZXVuQt3I",
+        "duration": "28m 19s",
+        "thumb": "images/secret_transfer_student_ep2.jpg"
+      }
+    ]
+  },
+  "hanni_bday_no_laugh": {
+    "id": "hanni_bday_no_laugh",
+    "title": "ปาร์ตี้วันเกิดห้ามหัวเราะของ ฮันนี่",
+    "badge": "ซับไทย Full HD",
+    "desc": "ปาร์ตี้วันเกิดห้ามหัวเราะของ ฮันนี่ (Hanni Pham) ร่วมกับ แฮริน (Haerin) และ ยูบยองแจ (Yoo Byung-jae) บรรยากาศสุดกลั้นขำ แปลไทยโดยช่อง SCENE722",
+    "thumb": "images/hanni_bday_no_laugh.jpg",
+    "count": 1,
+    "episodes": [
+      {
+        "num": 1,
+        "title": "ปาร์ตี้วันเกิดห้ามหัวเราะของ ฮันนี่ (ซับไทย)",
+        "ytId": "7nnwAxDXFzw",
+        "duration": "21m 07s",
+        "thumb": "images/hanni_bday_no_laugh.jpg"
+      }
+    ]
+  },
   "bunnies_camp_tokyo_dome": {
     "id": "bunnies_camp_tokyo_dome",
     "title": "WOWOWライブ NewJeans Fan Meeting 'Bunnies Camp 2024 Tokyo Dome'",
