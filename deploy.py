@@ -12,7 +12,7 @@ def deploy(msg="Update BunniesFlix"):
     os.chdir(script_dir)
     
     try:
-        subprocess.run(["git", "add", "index.html", "db.js", "images/", "deploy.py"], check=True)
+        subprocess.run(["git", "add", "index.html", "db.js", "bilibili_db.js", "bilibili_archives.json", "images/", "deploy.py"], check=True)
         # Check if there are changes to commit
         status = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
         if status.stdout.strip():

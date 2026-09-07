@@ -1045,7 +1045,8 @@
   </div>
 
   <!-- Load Database -->
-  <script src="db.js?v=20260907_14"></script>
+  <script src="db.js?v=20260907_15"></script>
+  <script src="bilibili_db.js?v=20260907_15"></script>
 
   <script>
     // Navbar scroll effect
@@ -1068,13 +1069,24 @@
         { key: 'bunnies_timeline_2022', title: 'Timeline ย้อนหลัง 2022', badge: '27 ตอน ซับไทย', thumb: 'https://img.youtube.com/vi/ZeILMH_B2_8/hqdefault.jpg' }
       ],
       concerts: [
-        { key: 'bunnies_camp_tokyo_dome', title: "NewJeans Fan Meeting 'Bunnies Camp 2024 Tokyo Dome'", badge: 'ซับไทย Full HD', thumb: 'images/bunnies_camp_tokyo_dome.jpg' }
+        { key: 'bunnies_camp_tokyo_dome', title: "NewJeans Fan Meeting 'Bunnies Camp 2024 Tokyo Dome'", badge: 'ซับไทย Full HD', thumb: 'images/bunnies_camp_tokyo_dome.jpg' },
+        { key: 'bunnies_camp_2023', title: "NewJeans 1st Fan Meeting 'Bunnies Camp 2023'", badge: '2 วันเต็ม ซับไทย', thumb: 'https://p.bstarstatic.com/ugc/76dffeb182d91d6662867cbbe80ecc26.jpg' },
+        { key: 'iu_palette_newjeans', title: "[IU's Palette] NewJeans Ep.21", badge: 'ซับไทย Full HD', thumb: 'https://p.bstarstatic.com/ugc/c41ce0e293c485a85fd2061cd390aedc.jpg' },
+        { key: 'lee_mujin_service_newjeans', title: "Lee Mujin Service (NewJeans & Danielle)", badge: '2 ตอน ซับไทย', thumb: 'https://p.bstarstatic.com/ugc/1f0be547d21c4e1f89952bb2b18d9b83.jpg' }
       ],
       variety: [
         { key: 'two_days_one_night_229', title: '2 Days and 1 Night 4 Episode 229', badge: 'ซับไทย Full HD', thumb: 'images/2days1night_229.jpg' },
         { key: 'code_in_busan', title: 'NewJeans Code in Busan', badge: 'ซับไทย', thumb: 'images/code_in_busan_ep1.jpg' },
         { key: 'secret_transfer_student', title: 'นักเรียนโอนย้ายลับ (Secret Transfer Student)', badge: '2 ตอน ซับไทย', thumb: 'images/secret_transfer_student.jpg' },
-        { key: 'hanni_bday_no_laugh', title: 'ปาร์ตี้วันเกิดห้ามหัวเราะของ ฮันนี่', badge: 'ซับไทย Full HD', thumb: 'images/hanni_bday_no_laugh.jpg' }
+        { key: 'hanni_bday_no_laugh', title: 'ปาร์ตี้วันเกิดห้ามหัวเราะของ ฮันนี่', badge: 'ซับไทย Full HD', thumb: 'images/hanni_bday_no_laugh.jpg' },
+        { key: 'you_quiz_on_the_block', title: 'You Quiz on the Block', badge: '2 ตอน ซับไทย', thumb: 'https://p.bstarstatic.com/ugc/fc46229cfccb1211cf07e1e8b924f5be.jpg' },
+        { key: 'idol_human_theater', title: 'ไอดอลฮิวแมนเธียเตอร์ (Idol Human Theater)', badge: '2 ตอน ซับไทย', thumb: 'https://p.bstarstatic.com/ugc/47dd751f35992f1233dc1539f9800966.jpg' },
+        { key: 'idols_physical_race', title: "Idol's Physical Race", badge: '3 ตอน ซับไทย', thumb: 'https://p.bstarstatic.com/ugc/a0b76ab24bfc2e2991568f4bcc88d722.jpg' },
+        { key: 'sizzling_with_nah', title: 'Sizzling with Nah (Channel Fullmoon x Na PD)', badge: '2 ตอน ซับไทย', thumb: 'https://p.bstarstatic.com/ugc/c06017c9f0e078926ddeb19418ca81f9.jpg' },
+        { key: 'bilibili_variety_specials', title: 'วาไรตี้ทีวี & รายการพิเศษ (TV Specials)', badge: '12 ตอน ซับไทย', thumb: 'https://p.bstarstatic.com/ugc/c743ea51d79928d832c792865beb3434.jpg' },
+        { key: 'bilibili_radio_talks', title: 'รายการวิทยุ & พอดแคสต์ (Radio Shows)', badge: '10 ตอน ซับไทย', thumb: 'https://p.bstarstatic.com/ugc/a4598ce1bcc3b6e5202ccba72545c5fb.jpg' },
+        { key: 'bilibili_interviews_fashion', title: 'แฟชั่น นิตยสาร & บทสัมภาษณ์เจาะลึก', badge: '31 ตอน ซับไทย', thumb: 'https://p.bstarstatic.com/ugc/8e4bc4edfcb303403c5e2cfc1d5bfc48.jpg' },
+        { key: 'bilibili_all_archive', title: 'คลังคลิป Bilibili ซับไทยทั้งหมด (@Bunnies Thailand)', badge: '183 คลิป ซับไทย', thumb: 'https://p.bstarstatic.com/ugc/8ab1d1afbcc190d27af309ba750931a1.jpg' }
       ],
       seasons: [
         { key: 'newjeans_yearbook', title: "NEWJEANS YEARBOOK 22-23", badge: '11 ตอน', thumb: 'images/newjeans_yearbook.jpg' },
@@ -1191,7 +1203,30 @@
       const container = document.getElementById('modalPlayer');
       const directBtn = document.getElementById('modalYtDirectLink');
 
-      if (ep.embedUrl) {
+      if (ep.bilibili || ep.aid || (ep.directUrl && ep.directUrl.includes('bilibili'))) {
+        const bUrl = ep.directUrl || (ep.aid ? `https://www.bilibili.tv/th/video/${ep.aid}` : '#');
+        container.innerHTML = `
+          <div style="position:relative; width:100%; height:100%; background:#0b1120; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; box-sizing:border-box;">
+            <img src="${ep.thumb || 'images/newjeans_all.jpg'}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0.25; filter:blur(4px);" />
+            <div style="position:relative; z-index:2; max-width:540px;">
+              <span style="display:inline-block; background:#00a1d6; color:white; font-size:11px; font-weight:bold; padding:4px 12px; border-radius:4px; margin-bottom:12px;">
+                <i class="fa-solid fa-tv"></i> BILIBILI EXCLUSIVE ซับไทย
+              </span>
+              <h3 style="color:white; font-size:16px; margin-bottom:8px; line-height:1.5;">${ep.title || ''}</h3>
+              <p style="color:#94a3b8; font-size:13px; margin-bottom:18px;">ความยาว: ${ep.duration || 'Full HD'} • แปลไทยโดย @Bunnies Thailand</p>
+              <a href="${bUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:8px; background:#00a1d6; color:white; padding:12px 24px; border-radius:8px; font-size:15px; font-weight:700; text-decoration:none; box-shadow:0 4px 15px rgba(0,161,214,0.4); transition:transform 0.2s;">
+                <i class="fa-solid fa-play"></i> เปิดดูบน Bilibili ทันที (ฟรี)
+              </a>
+              <p style="color:#64748b; font-size:11px; margin-top:10px;">* คลิกเพื่อเปิดดูผ่านแอป Bilibili หรือรับชมบนเบราว์เซอร์ได้ทันที</p>
+            </div>
+          </div>`;
+        if (directBtn) {
+          directBtn.href = bUrl;
+          directBtn.innerHTML = '<i class="fa-solid fa-play"></i> เปิดดูบน Bilibili (แอป/เว็บ)';
+          directBtn.style.background = '#00a1d6';
+          directBtn.style.color = '#ffffff';
+        }
+      } else if (ep.embedUrl) {
         container.innerHTML = `<iframe src="${ep.embedUrl}" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>`;
         if (directBtn) {
           directBtn.href = ep.directUrl || ep.embedUrl;
@@ -1296,7 +1331,7 @@
         if (!cat || !cat.episodes) continue;
         for (const ep of cat.episodes) {
           const title = (ep.title || '').toLowerCase();
-          const epId = ep.ytId || ep.embedUrl;
+          const epId = ep.ytId || ep.embedUrl || ep.aid || ep.directUrl;
           if (!epId || seenIds.has(epId)) continue;
 
           const isMatch = member.keywords.some(k => title.includes(k.toLowerCase()));
@@ -1307,7 +1342,9 @@
               title: ep.title,
               ytId: ep.ytId,
               embedUrl: ep.embedUrl,
+              aid: ep.aid,
               directUrl: ep.directUrl,
+              bilibili: ep.bilibili,
               duration: ep.duration || 'Full HD',
               thumb: ep.thumb || `images/${memberKey.toLowerCase()}.jpg`
             });
