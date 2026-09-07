@@ -39,7 +39,8 @@
       color: var(--text-white);
       font-family: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
       overflow-x: hidden;
-      line-height: 1.4;
+      line-height: 1.65;
+      letter-spacing: 0.15px;
     }
 
     /* Scrollbar */
@@ -255,56 +256,61 @@
     }
 
     .hero-title {
-      font-size: 50px;
+      font-size: 54px;
       font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 14px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
-      letter-spacing: -0.5px;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+      letter-spacing: 0.3px;
     }
 
     .hero-meta {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 13px;
+      gap: 14px;
+      font-size: 13.5px;
+      line-height: 1.5;
       color: #cbd5e1;
-      margin-bottom: 14px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
     }
 
     .meta-tag {
       background: rgba(255,255,255,0.2);
-      padding: 2px 8px;
+      padding: 3px 9px;
       border-radius: 4px;
       font-weight: 600;
     }
 
     .hero-desc {
-      font-size: 14px;
+      font-size: 15px;
       color: #e2e8f0;
-      margin-bottom: 22px;
-      line-height: 1.6;
+      margin-bottom: 26px;
+      line-height: 1.8;
+      letter-spacing: 0.2px;
       text-shadow: 0 1px 6px rgba(0,0,0,0.9);
     }
 
     .hero-buttons {
       display: flex;
       gap: 14px;
+      margin-bottom: 16px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 11px 24px;
+      padding: 12px 26px;
       border-radius: 6px;
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 600;
       cursor: pointer;
       border: none;
       transition: all 0.2s;
       text-decoration: none;
       font-family: 'Prompt', sans-serif;
+      letter-spacing: 0.2px;
     }
 
     .btn-play {
@@ -330,34 +336,38 @@
 
     /* Main Container */
     .content-container {
-      max-width: 1200px;
-      margin: -50px auto 60px auto;
-      padding: 0 24px;
+      max-width: 1240px;
+      margin: -25px auto 70px auto;
+      padding: 0 28px;
       position: relative;
       z-index: 5;
     }
 
     /* Section Category (Heartsflix Style) */
     .hf-library-section {
-      margin-bottom: 38px;
+      margin-bottom: 48px;
     }
 
     .hf-library-title {
       color: #ffffff;
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       font-weight: 700;
-      line-height: 1.2;
+      line-height: 1.5;
+      letter-spacing: 0.25px;
       text-align: left;
-      margin-bottom: 14px;
+      margin-bottom: 18px;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
     .hf-library-title .sub-title {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 400;
       color: var(--text-gray);
+      line-height: 1.5;
     }
 
     /* 3-Column Grid (Exactly like Heartsflix) */
@@ -615,23 +625,44 @@
       margin-bottom: 12px;
     }
 
+    .modal-title {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: 0.2px;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .modal-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--text-gray);
+      margin-bottom: 14px;
+    }
+
     .modal-desc {
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 14.5px;
+      line-height: 1.75;
+      letter-spacing: 0.15px;
       color: #d1d5db;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     /* Episode List inside Modal */
     .episodes-header {
       font-size: 17px;
       font-weight: 700;
+      line-height: 1.4;
       margin-bottom: 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid var(--border-color);
-      padding-bottom: 10px;
+      padding-bottom: 12px;
     }
 
     .ep-list-container {
@@ -647,12 +678,12 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 10px 14px;
-      border-radius: 6px;
+      padding: 12px 16px;
+      border-radius: 8px;
       cursor: pointer;
       transition: background 0.2s;
       background-color: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       text-decoration: none;
       color: inherit;
     }
@@ -684,16 +715,18 @@
     }
 
     .ep-title {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 600;
       color: white;
-      margin-bottom: 4px;
-      line-height: 1.4;
+      margin-bottom: 6px;
+      line-height: 1.55;
+      letter-spacing: 0.15px;
     }
 
     .ep-duration {
-      font-size: 11px;
+      font-size: 11.5px;
       color: var(--accent-blue);
+      line-height: 1.4;
     }
 
     .ep-play-btn {
@@ -712,26 +745,85 @@
       }
       .search-input {
         width: 130px;
+        font-size: 13px;
       }
       .hero {
-        padding: 0 16px;
-        height: 60vh;
+        padding: 85px 18px 24px 18px;
+        height: auto;
+        min-height: unset;
+      }
+      .hero-content {
+        margin-top: 0;
       }
       .hero-title {
-        font-size: 32px;
+        font-size: 36px;
+        line-height: 1.25;
+        margin-bottom: 14px;
+      }
+      .hero-desc {
+        font-size: 13.5px;
+        line-height: 1.75;
+        margin-bottom: 20px;
+      }
+      .hero-buttons {
+        margin-bottom: 24px;
+        gap: 10px;
+      }
+      .btn {
+        padding: 10px 18px;
+        font-size: 13px;
       }
       .content-container {
-        padding: 0 12px 40px 12px;
+        margin: 15px auto 50px auto;
+        padding: 0 14px;
+      }
+      .hf-library-section {
+        margin-bottom: 36px;
+      }
+      .hf-library-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        font-size: 1.25rem;
+        line-height: 1.4;
+        margin-bottom: 14px;
+      }
+      .hf-library-title .sub-title {
+        font-size: 12px;
+        line-height: 1.45;
       }
       .hf-library-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
+        gap: 10px;
+      }
+      .card-overlay {
+        padding: 10px 12px;
+      }
+      .card-title-text {
+        font-size: 13px;
+        line-height: 1.4;
+      }
+      .card-meta-text {
+        margin-top: 4px;
+        font-size: 10.5px;
       }
       .members-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
       }
       .modal-player-container {
         height: 220px;
+      }
+      .modal-body {
+        padding: 18px 16px;
+      }
+      .modal-title {
+        font-size: 20px;
+        line-height: 1.35;
+      }
+      .modal-desc {
+        font-size: 13.5px;
+        line-height: 1.7;
       }
     }
   </style>
@@ -953,7 +1045,7 @@
   </div>
 
   <!-- Load Database -->
-  <script src="db.js?v=20260907_11"></script>
+  <script src="db.js?v=20260907_12"></script>
 
   <script>
     // Navbar scroll effect
