@@ -5,7 +5,7 @@ const bilibiliDatabase = {
     "title": "You Quiz on the Block",
     "badge": "2 ตอน ซับไทย",
     "desc": "NewJeans ในรายการทอล์กโชว์ชื่อดัง You Quiz on the Block (tvN) ดำเนินรายการโดย ยูแจซอก และ โจเซโฮ แปลไทยโดย Bunnies Thailand",
-    "thumb": "https://p.bstarstatic.com/ugc/fc46229cfccb1211cf07e1e8b924f5be.jpg",
+    "thumb": "images/you_quiz.jpg",
     "count": 2,
     "episodes": [
       {
@@ -33,7 +33,7 @@ const bilibiliDatabase = {
     "title": "ไอดอลฮิวแมนเธียเตอร์ (Idol Human Theater)",
     "badge": "2 ตอน ซับไทย",
     "desc": "รายการวาไรตี้ล้อเลียนชีวิตประจำวันสุดฮาของ NewJeans ที่จะทำให้คุณหลงรักความตลกธรรมชาติของสมาชิก ซับไทย",
-    "thumb": "https://p.bstarstatic.com/ugc/47dd751f35992f1233dc1539f9800966.jpg",
+    "thumb": "images/idol_human_theater.jpg",
     "count": 2,
     "episodes": [
       {
@@ -61,7 +61,7 @@ const bilibiliDatabase = {
     "title": "Idol's Physical Race",
     "badge": "3 ตอน ซับไทย",
     "desc": "การแข่งขันประลองสมรรถภาพทางกายสุดน่ารักและเฮฮาของ NewJeans ครบทั้ง 3 ตอน ซับไทย",
-    "thumb": "https://p.bstarstatic.com/ugc/3af79b79d7fe2c656e271b98db5d63ad.jpg",
+    "thumb": "images/idols_physical_race.jpg",
     "count": 3,
     "episodes": [
       {
@@ -98,7 +98,7 @@ const bilibiliDatabase = {
     "title": "Sizzling with Nah (Channel Fullmoon x Na PD)",
     "badge": "2 ตอน ซับไทย",
     "desc": "NewJeans ร่วมรายการกับโปรดิวเซอร์ชื่อดัง นาพีดี (Na Young-seok) แห่ง Channel Fullmoon ปิ้งย่างพูดคุยและเล่นเกมสุดปั่น ซับไทย",
-    "thumb": "https://p.bstarstatic.com/ugc/c06017c9f0e078926ddeb19418ca81f9.jpg",
+    "thumb": "images/sizzling_with_nah.jpg",
     "count": 2,
     "episodes": [
       {
@@ -126,7 +126,7 @@ const bilibiliDatabase = {
     "title": "รายการวิทยุ & พอดแคสต์ (Radio Shows)",
     "badge": "10 ตอน ซับไทย",
     "desc": "รวมรายการวิทยุและทอล์กโชว์เต็มรูปแบบของ NewJeans ทั้ง ComeDownMan (침착맨 48 นาที), SBS Cultwo Show, Power FM และสถานีวิทยุระดับโลก ซับไทย",
-    "thumb": "https://p.bstarstatic.com/ugc/a4598ce1bcc3b6e5202ccba72545c5fb.jpg",
+    "thumb": "images/bilibili_radio_talks.jpg",
     "count": 10,
     "episodes": [
       {
@@ -226,7 +226,7 @@ const bilibiliDatabase = {
     "title": "วาไรตี้ทีวี & รายการพิเศษ (TV Specials)",
     "badge": "12 ตอน ซับไทย",
     "desc": "รวมรายการทีวี วาไรตี้สั้น และรายการพิเศษต่างๆ ของ NewJeans (พัคฮยองซู, Freehand Doctor, Golden Girls, Girls Night Out, K-POP HOUSE, Mezamashi) ซับไทย",
-    "thumb": "https://p.bstarstatic.com/ugc/c743ea51d79928d832c792865beb3434.jpg",
+    "thumb": "images/bilibili_variety_specials.jpg",
     "count": 12,
     "episodes": [
       {
@@ -344,7 +344,7 @@ const bilibiliDatabase = {
     "title": "แฟชั่น นิตยสาร & บทสัมภาษณ์เจาะลึก (Fashion & VLOG)",
     "badge": "31 ตอน ซับไทย",
     "desc": "รวมบทสัมภาษณ์สุดเอ็กซ์คลูซีฟ แฟชั่นเซ็ต และ VLOG เดี่ยวของสมาชิก NewJeans จาก W Korea, Vogue, ELLE, Harper's Bazaar, Dazed และ NHK ซับไทย",
-    "thumb": "https://p.bstarstatic.com/ugc/8e4bc4edfcb303403c5e2cfc1d5bfc48.jpg",
+    "thumb": "images/bilibili_interviews_fashion.jpg",
     "count": 31,
     "episodes": [
       {
@@ -633,7 +633,7 @@ const bilibiliDatabase = {
     "title": "NewJeans 1st Fan Meeting 'Bunnies Camp 2023'",
     "badge": "2 วันเต็ม ซับไทย",
     "desc": "แฟนมีตติ้งครั้งแรกของ NewJeans 'Bunnies Camp 2023' จัดขึ้น ณ SK Olympic Handball Gymnasium บันทึกการแสดงสดเต็มโชว์ทั้ง 2 วัน พร้อมแปลไทยและโบนัสคลิป",
-    "thumb": "https://p.bstarstatic.com/ugc/76dffeb182d91d6662867cbbe80ecc26.jpg",
+    "thumb": "images/bunnies_camp_2023.jpg",
     "count": 3,
     "episodes": [
       {
@@ -670,7 +670,7 @@ const bilibiliDatabase = {
     "title": "[IU's Palette] NewJeans Ep.21",
     "badge": "ซับไทย Full HD",
     "desc": "NewJeans ร่วมรายการ IU's Palette EP.21 ร้องเพลงแลกเปลี่ยนบทเพลงสุดอบอุ่นกับรุ่นพี่ไอยู (IU) พร้อมบทสัมภาษณ์ยาว 55 นาที ซับไทย",
-    "thumb": "https://p.bstarstatic.com/ugc/c41ce0e293c485a85fd2061cd390aedc.jpg",
+    "thumb": "images/iu_palette.jpg",
     "count": 1,
     "episodes": [
       {
@@ -689,7 +689,7 @@ const bilibiliDatabase = {
     "title": "Lee Mujin Service (NewJeans & Danielle)",
     "badge": "2 ตอน ซับไทย",
     "desc": "การโชว์พลังเสียงร้องสดระดับคุณภาพของ NewJeans ในรายการ Lee Mujin Service (ตอนรวมสมาชิก EP.46 และตอนเดี่ยวของ แดเนียล EP.75) ซับไทย",
-    "thumb": "https://p.bstarstatic.com/ugc/1f0be547d21c4e1f89952bb2b18d9b83.jpg",
+    "thumb": "images/lee_mujin.jpg",
     "count": 2,
     "episodes": [
       {
@@ -717,7 +717,7 @@ const bilibiliDatabase = {
     "title": "คลังคลิป Bilibili ซับไทยทั้งหมด (@Bunnies Thailand)",
     "badge": "183 คลิป ซับไทย",
     "desc": "รวมคลิปซับไทยทั้งหมด 183 วิดีโอจากช่อง Bilibili @Bunnies Thailand ครบทุกสัมภาษณ์ รายการทีวี เบื้องหลัง ไลฟ์ และการแสดง",
-    "thumb": "https://p.bstarstatic.com/ugc/8e4bc4edfcb303403c5e2cfc1d5bfc48.jpg",
+    "thumb": "images/bilibili_all_archive.jpg",
     "count": 183,
     "episodes": [
       {
