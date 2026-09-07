@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BunniesFlix 🐰 - NewJeans Content Directory</title>
+  <meta name="description" content="คลังรวมวิดีโอ รายการ วาไรตี้ สเตจ และคลิปซับไทยของ NewJeans โดย @BunniesThailand">
+  <meta name="referrer" content="origin-when-cross-origin">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-color: #000000;
+      --card-bg: #141414;
+      --card-hover: #202020;
+      --accent-blue: #38bdf8;
+      --accent-pink: #f472b6;
+      --text-white: #ffffff;
+      --text-gray: #a1a1aa;
+      --border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-white);
+      font-family: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.4;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #000;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #222;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #444;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 68px;
+      padding: 0 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0) 100%);
+      transition: background 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(0, 0, 0, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .brand-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 34px;
+      letter-spacing: 2px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #38bdf8 0%, #f472b6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.2s;
+    }
+
+    .brand-logo:hover {
+      transform: scale(1.03);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 22px;
+    }
+
+    .nav-links a {
+      color: #e5e5e5;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent-blue);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Search Box */
+    .search-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 7px 16px 7px 36px;
+      color: white;
+      font-size: 13px;
+      font-family: 'Prompt', sans-serif;
+      width: 200px;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .search-input:focus {
+      width: 260px;
+      background: rgba(255, 255, 255, 0.18);
+      border-color: var(--accent-blue);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      font-size: 13px;
+      color: var(--text-gray);
+      pointer-events: none;
+    }
+
+    .yt-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #ff0000;
+      color: white;
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .yt-btn:hover {
+      background-color: #d60000;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 78vh;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      padding: 0 44px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .hero-video-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-video-wrapper iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 56.25vw; /* 16:9 aspect ratio */
+      min-height: 100vh;
+      min-width: 177.77vh; /* 16:9 aspect ratio */
+      transform: translate(-50%, -50%) scale(1.28);
+      border: none;
+      pointer-events: none;
+    }
+
+    .hero-vignette {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(77deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.6) 45%, rgba(0, 0, 0, 0.15) 80%),
+        linear-gradient(to top, var(--bg-color) 0%, rgba(0, 0, 0, 0) 50%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 25%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+
+    .hero-content {
+      max-width: 650px;
+      position: relative;
+      z-index: 3;
+      margin-top: 40px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 50px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+      letter-spacing: -0.5px;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: #cbd5e1;
+      margin-bottom: 14px;
+    }
+
+    .meta-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: #e2e8f0;
+      margin-bottom: 22px;
+      line-height: 1.6;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.9);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      text-decoration: none;
+      font-family: 'Prompt', sans-serif;
+    }
+
+    .btn-play {
+      background-color: white;
+      color: black;
+    }
+
+    .btn-play:hover {
+      background-color: #e2e8f0;
+      transform: scale(1.04);
+    }
+
+    .btn-info {
+      background-color: rgba(255, 255, 255, 0.22);
+      color: white;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-info:hover {
+      background-color: rgba(255, 255, 255, 0.35);
+      transform: scale(1.04);
+    }
+
+    /* Main Container */
+    .content-container {
+      max-width: 1200px;
+      margin: -50px auto 60px auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Section Category (Heartsflix Style) */
+    .hf-library-section {
+      margin-bottom: 38px;
+    }
+
+    .hf-library-title {
+      color: #ffffff;
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: left;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hf-library-title .sub-title {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-gray);
+    }
+
+    /* 3-Column Grid (Exactly like Heartsflix) */
+    .hf-library-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      width: 100%;
+    }
+
+    .hf-library-card-animation {
+      position: relative;
+      width: 100%;
+    }
+
+    .hf-library-card {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #141414;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      cursor: pointer;
+    }
+
+    .hf-library-card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    /* Card Badge & Title Overlay */
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .card-title-text {
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-meta-text {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+
+    .card-badge-pill {
+      background: rgba(56, 189, 248, 0.25);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      color: #38bdf8;
+      padding: 1px 7px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .badge-sub {
+      background: rgba(34, 197, 94, 0.25);
+      border-color: rgba(34, 197, 94, 0.5);
+      color: #4ade80;
+    }
+
+    .badge-4k {
+      background: linear-gradient(135deg, rgba(234, 179, 8, 0.25), rgba(249, 115, 22, 0.25));
+      border-color: #f59e0b;
+      color: #fbbf24;
+      text-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
+    }
+
+    @media (hover: hover) {
+      .hf-library-card:hover {
+        transform: scale(1.04);
+        z-index: 10;
+        border-color: var(--accent-blue);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+      }
+      .hf-library-card:hover img {
+        transform: scale(1.03);
+      }
+    }
+
+    /* Members Grid */
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .member-card {
+      background: #121318;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 18px 12px;
+      text-align: center;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .member-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-pink);
+      box-shadow: 0 8px 20px rgba(244, 114, 182, 0.2);
+    }
+
+    .member-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin: 0 auto 12px auto;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid var(--accent-blue);
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
+    }
+
+    .member-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .member-role {
+      font-size: 12px;
+      color: var(--text-gray);
+      margin-top: 2px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--text-gray);
+      font-size: 13px;
+    }
+
+    footer a {
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    /* Modal / Details Popup */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background-color: #141416;
+      width: 100%;
+      max-width: 920px;
+      max-height: 92vh;
+      border-radius: 12px;
+      overflow-y: auto;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.95);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      border-radius: 50%;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.2s;
+    }
+
+    .modal-close-btn:hover {
+      background: white;
+      color: black;
+      transform: scale(1.1);
+    }
+
+    .modal-player-container {
+      width: 100%;
+      height: 400px;
+      background-color: #000;
+      position: relative;
+    }
+
+    .modal-player-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .modal-body {
+      padding: 24px 28px;
+    }
+
+    .modal-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .modal-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text-gray);
+      margin-bottom: 12px;
+    }
+
+    .modal-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #d1d5db;
+      margin-bottom: 22px;
+    }
+
+    /* Episode List inside Modal */
+    .episodes-header {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .ep-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+
+    .episode-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .episode-item:hover, .episode-item.active {
+      background-color: var(--card-hover);
+      border-color: var(--accent-blue);
+    }
+
+    .ep-num {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-gray);
+      min-width: 28px;
+      text-align: center;
+    }
+
+    .ep-thumb {
+      width: 110px;
+      height: 62px;
+      border-radius: 4px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #252730;
+    }
+
+    .ep-details {
+      flex: 1;
+    }
+
+    .ep-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .ep-duration {
+      font-size: 11px;
+      color: var(--accent-blue);
+    }
+
+    .ep-play-btn {
+      font-size: 18px;
+      color: var(--accent-blue);
+      padding-right: 6px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0 16px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .search-input {
+        width: 130px;
+      }
+      .hero {
+        padding: 0 16px;
+        height: 60vh;
+      }
+      .hero-title {
+        font-size: 32px;
+      }
+      .content-container {
+        padding: 0 12px 40px 12px;
+      }
+      .hf-library-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .modal-player-container {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <a href="#" class="brand-logo">
+        <i class="fa-solid fa-play" style="font-size: 20px;"></i> BUNNIESFLIX
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">หน้าแรก</a></li>
+        <li><a href="#sec-bunnies">ซับไทย (@BunniesThailand)</a></li>
+        <li><a href="#sec-concerts">คอนเสิร์ต (Concerts)</a></li>
+        <li><a href="#sec-variety">วาไรตี้ (Variety)</a></li>
+        <li><a href="#sec-seasons">Season's Greetings</a></li>
+        <li><a href="#sec-originals">NewJeans Originals</a></li>
+        <li><a href="#sec-music">Music & Stages</a></li>
+        <li><a href="#sec-members">สมาชิก</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" class="search-input" id="searchInput" placeholder="ค้นหาคลิป / ตอน..." oninput="handleSearch(this.value)">
+      </div>
+      <a href="https://www.youtube.com/@BunniesThailand" target="_blank" class="yt-btn">
+        <i class="fa-brands fa-youtube"></i> @BunniesThailand
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section (Heartsflix Animated Video Style) -->
+  <header class="hero" id="home">
+    <!-- Animated Video Background -->
+    <div class="hero-video-wrapper">
+      <iframe 
+        id="heroVideoIframe"
+        src="https://www.youtube.com/embed/o7DnBq7Fn74?autoplay=1&mute=1&controls=0&loop=1&playlist=o7DnBq7Fn74&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        tabindex="-1"
+      ></iframe>
+      <div class="hero-vignette"></div>
+    </div>
+
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fa-solid fa-play"></i> BUNNIESFLIX DIRECTORY
+      </div>
+      <h1 class="hero-title" id="heroTitle" style="font-size: 56px; font-weight: 800; letter-spacing: -1px; text-shadow: 0 4px 16px rgba(0,0,0,0.9);">NewJeans</h1>
+      <div class="hero-meta">
+        <span class="meta-tag" style="background-color: #38bdf8; color: black; font-weight: 700;">🇹🇭 ซับไทย & OFFICIAL</span>
+        <span>1,000+ ตอน</span>
+        <span class="meta-tag">1080p Full HD</span>
+        <span>Variety • Reality • Music</span>
+      </div>
+      <p class="hero-desc" id="heroDesc" style="font-size: 15px; line-height: 1.7; color: #e2e8f0; max-width: 620px;">
+        ศูนย์รวมวิดีโอ NewJeans ครบทุกคอนเทนต์ ทั้งรายการวาไรตี้ NewJeans Originals, วิดีโอเบื้องหลัง, สเตจแสดงสด และคลังคลิปแปลซับไทยโดย @BunniesThailand รวมไว้ให้ชาวบันนี่ได้รับชมครบจบในที่เดียว
+      </p>
+      <div class="hero-buttons">
+        <button class="btn btn-play" onclick="openSeriesModal('jeans_zine')">
+          <i class="fa-solid fa-play"></i> เริ่มรับชม (Play)
+        </button>
+        <button class="btn btn-info" onclick="document.getElementById('sec-bunnies').scrollIntoView({ behavior: 'smooth' })">
+          <i class="fa-solid fa-layer-group"></i> ดูหมวดหมู่ทั้งหมด (Explore All)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="content-container">
+
+    <!-- Section 1: @BunniesThailand Originals & ซับไทย -->
+    <section class="hf-library-section" id="sec-bunnies">
+      <h2 class="hf-library-title">
+        <span>🇹🇭 @BunniesThailand Originals & ซับไทย</span>
+        <span class="sub-title">แปลไทยโดยช่อง @BunniesThailand</span>
+      </h2>
+      <div class="hf-library-grid" id="grid-bunnies">
+        <!-- Injected by JS -->
+      </div>
+    </section>
+
+    <!-- Section: Concerts & Fan Meetings -->
+    <section class="hf-library-section" id="sec-concerts">
+      <h2 class="hf-library-title">
+        <span>🎤 คอนเสิร์ต & แฟนมีตติ้ง (Concerts & Live)</span>
+        <span class="sub-title">คอนเสิร์ตใหญ่ แฟนมีตติ้ง และไลฟ์สเตจเต็มรูปแบบ</span>
+      </h2>
+      <div class="hf-library-grid" id="grid-concerts">
+        <!-- Injected by JS -->
+      </div>
+    </section>
+
+    <!-- Section: Variety Shows -->
+    <section class="hf-library-section" id="sec-variety">
+      <h2 class="hf-library-title">
+        <span>📺 รายการวาไรตี้ (Variety Shows)</span>
+        <span class="sub-title">วาไรตี้ รายการทีวี และเกมโชว์ NewJeans</span>
+      </h2>
+      <div class="hf-library-grid" id="grid-variety">
+        <!-- Injected by JS -->
+      </div>
+    </section>
+
+    <!-- Section: Seasons Greetings -->
+    <section class="hf-library-section" id="sec-seasons">
+      <h2 class="hf-library-title">
+        <span>🎁 ซีซั่นส์กรีตติ้งส์ (SEASON'S GREETINGS)</span>
+        <span class="sub-title">วิดีโอพิเศษและเบื้องหลัง Season's Greetings ทุกปีของ NewJeans</span>
+      </h2>
+      <div class="hf-library-grid" id="grid-seasons">
+        <!-- Injected by JS -->
+      </div>
+    </section>
+
+    <!-- Section 2: NewJeans Originals -->
+    <section class="hf-library-section" id="sec-originals">
+      <h2 class="hf-library-title">
+        <span>🎬 NewJeans Originals</span>
+        <span class="sub-title">รายการหลักทางการจาก ADOR / Official</span>
+      </h2>
+      <div class="hf-library-grid" id="grid-originals">
+        <!-- Injected by JS -->
+      </div>
+    </section>
+
+    <!-- Section 3: Music & Performances -->
+    <section class="hf-library-section" id="sec-music">
+      <h2 class="hf-library-title">
+        <span>🎵 Music, Stages & Behind</span>
+        <span class="sub-title">เอ็มวี สเตจแสดงสด และเบื้องหลัง</span>
+      </h2>
+      <div class="hf-library-grid" id="grid-music">
+        <!-- Injected by JS -->
+      </div>
+    </section>
+
+
+    <!-- Section 4: Members -->
+    <section class="hf-library-section" id="sec-members">
+      <h2 class="hf-library-title">
+        <span>🐰 NewJeans Members</span>
+        <span class="sub-title">คลิกที่สมาชิกเพื่อเปิดดูคลังคลิปทั้งหมดของแต่ละคน</span>
+      </h2>
+      <div class="members-grid">
+        <div class="member-card" onclick="openMemberModal('Minji')">
+          <img src="images/minji.jpg" class="member-avatar" alt="Minji">
+          <h3 class="member-name">มินจี (Minji)</h3>
+          <p class="member-role">Kim Minji • 2004</p>
+        </div>
+        <div class="member-card" onclick="openMemberModal('Hanni')">
+          <img src="images/hanni.jpg" class="member-avatar" alt="Hanni">
+          <h3 class="member-name">ฮันนี่ (Hanni)</h3>
+          <p class="member-role">Hanni Pham • 2004</p>
+        </div>
+        <div class="member-card" onclick="openMemberModal('Danielle')">
+          <img src="images/danielle.jpg" class="member-avatar" alt="Danielle">
+          <h3 class="member-name">แดเนียล (Danielle)</h3>
+          <p class="member-role">Danielle Marsh • 2005</p>
+        </div>
+        <div class="member-card" onclick="openMemberModal('Haerin')">
+          <img src="images/haerin.jpg" class="member-avatar" alt="Haerin">
+          <h3 class="member-name">แฮริน (Haerin)</h3>
+          <p class="member-role">Kang Haerin • 2006</p>
+        </div>
+        <div class="member-card" onclick="openMemberModal('Hyein')">
+          <img src="images/hyein.jpg" class="member-avatar" alt="Hyein">
+          <h3 class="member-name">ฮเยอิน (Hyein)</h3>
+          <p class="member-role">Lee Hyein • 2008</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>BunniesFlix — Directory สำหรับแฟนคลับ NewJeans & ช่อง <a href="https://www.youtube.com/@BunniesThailand" target="_blank">@BunniesThailand</a></p>
+    <p style="margin-top: 8px;">เชื่อมต่อข้อมูลจากช่องทางการ <a href="https://www.youtube.com/@NewJeans_official" target="_blank">@NewJeans_official</a></p>
+  </footer>
+
+  <!-- Modal Component (Exactly like Heartsflix) -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      
+      <!-- Video Player -->
+      <div class="modal-player-container" id="modalPlayer">
+        <!-- Iframe injected here -->
+      </div>
+
+      <div class="modal-body">
+        <h2 class="modal-title" id="modalTitle">Title</h2>
+        <div class="modal-meta-row">
+          <span class="meta-tag" id="modalBadge" style="background:#38bdf8; color:black;">OFFICIAL</span>
+          <span id="modalTotalCount">0 Episodes</span>
+          <span class="meta-tag">1080p HD</span>
+          <a id="modalYtDirectLink" href="#" target="_blank" class="yt-btn" style="padding: 3px 12px; font-size: 11px; margin-left: auto;">
+            <i class="fa-brands fa-youtube"></i> ดูบน YouTube โดยตรง
+          </a>
+        </div>
+        <p class="modal-desc" id="modalDesc">Description</p>
+
+        <!-- Episode List -->
+        <div class="episodes-header">
+          <span><i class="fa-solid fa-list-ul"></i> รายชื่อตอน (Episodes List)</span>
+          <span style="font-size: 13px; color: var(--accent-blue);" id="epListStats"></span>
+        </div>
+        <div class="ep-list-container" id="epListContainer">
+          <!-- Episodes injected by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Database -->
+  <script src="db.js?v=20260907_10"></script>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 40) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Grouping Config (Exact 3-Column Grid like Heartsflix)
+    const sectionGroups = {
+      bunnies: [
+        { key: 'bunnies_live', title: 'NJZ Live & IG แปลไทย', badge: 'LIVE ซับไทย', thumb: 'https://img.youtube.com/vi/jFaIVsIfUBA/maxresdefault.jpg' },
+        { key: 'bunnies_making', title: 'Making Jeans ซับไทย', badge: 'ซับไทย', thumb: 'https://img.youtube.com/vi/Nh8Wqw0jZoE/maxresdefault.jpg' },
+        { key: 'bunnies_latest', title: 'ซับไทย & คลิปอัปเดตล่าสุด', badge: 'NEW', thumb: 'https://img.youtube.com/vi/4k9Zqv6bUYk/maxresdefault.jpg' },
+        { key: 'bunnies_all', title: 'คลังคลิปทั้งหมด @BunniesThailand', badge: '306 คลิป', thumb: 'https://img.youtube.com/vi/cn9R90Y__rw/maxresdefault.jpg' }
+      ],
+      concerts: [
+        { key: 'bunnies_camp_tokyo_dome', title: "NewJeans Fan Meeting 'Bunnies Camp 2024 Tokyo Dome'", badge: 'ซับไทย Full HD', thumb: 'images/bunnies_camp_tokyo_dome.jpg' }
+      ],
+      variety: [
+        { key: 'two_days_one_night_229', title: '2 Days and 1 Night 4 Episode 229', badge: 'ซับไทย Full HD', thumb: 'images/2days1night_229.jpg' },
+        { key: 'code_in_busan', title: 'NewJeans Code in Busan', badge: 'ซับไทย', thumb: 'images/code_in_busan_ep1.jpg' }
+      ],
+      seasons: [
+        { key: 'newjeans_yearbook', title: "NEWJEANS YEARBOOK 22-23", badge: '11 ตอน', thumb: 'images/newjeans_yearbook.jpg' },
+        { key: 'seasons_greetings_2023', title: "NewJeans 2023 SEASONS GREETINGS Special Video", badge: 'Full HD', thumb: 'images/seasons_greetings_2023.jpg' },
+        { key: 'seasons_greetings_2024', title: "NewJeans 2024 SEASONS GREETINGS Special Video", badge: 'Full HD', thumb: 'images/seasons_greetings_2024.jpg' }
+      ],
+      originals: [
+        { key: 'jeans_zine', title: "Jeans' ZINE", badge: 'VARIETY', thumb: 'https://img.youtube.com/vi/OMVoxddjWmM/maxresdefault.jpg' },
+        { key: 'light_jeans', title: 'Light Jeans', badge: 'BEHIND', thumb: 'https://img.youtube.com/vi/fbPaDZVgfrU/maxresdefault.jpg' },
+        { key: 'about_jeans', title: 'About Jeans (Vlogs)', badge: 'VLOG', thumb: 'https://img.youtube.com/vi/ir6ndUQ2pS4/maxresdefault.jpg' },
+        { key: 'newzips', title: 'NewZips (Trip Reality)', badge: 'REALITY', thumb: 'https://img.youtube.com/vi/gxVxGSoj7Y0/maxresdefault.jpg' }
+      ],
+      music: [
+        { key: 'mvs', title: 'Official Music Videos', badge: 'MV', thumb: 'https://img.youtube.com/vi/KREKSUPia3k/maxresdefault.jpg' },
+        { key: 'choreography', title: 'Dance Practice & Choreo', badge: 'DANCE', thumb: 'https://img.youtube.com/vi/_8z6tRLKSIY/maxresdefault.jpg' },
+        { key: 'stages', title: 'NewJeans Stage (Live)', badge: 'STAGE', thumb: 'https://img.youtube.com/vi/mDZEznPaDFk/maxresdefault.jpg' },
+        { key: 'by_jeans', title: 'By Jeans (Solo & Covers)', badge: 'COVERS', thumb: 'https://img.youtube.com/vi/VvolrweMSTY/maxresdefault.jpg' },
+        { key: 'making_jeans', title: 'Making Jeans (Production)', badge: 'MAKING', thumb: 'https://img.youtube.com/vi/knRVMlRu1xU/maxresdefault.jpg' }
+      ]
+    };
+
+    function renderGrid(containerId, items) {
+      const container = document.getElementById(containerId);
+      if (!container || typeof officialDatabase === 'undefined' || !items) return;
+
+      container.innerHTML = items.map(item => {
+        const data = officialDatabase[item.key];
+        const count = data ? data.count : 0;
+        const thumb = item.thumb || (data && data.thumb ? data.thumb : '');
+        let badgeClass = '';
+        if (item.badge.includes('ซับ') || item.badge.includes('LIVE')) {
+          badgeClass = 'badge-sub';
+        } else if (item.badge.includes('4K')) {
+          badgeClass = 'badge-4k';
+        }
+
+        return `
+          <div class="hf-library-card-animation">
+            <div class="hf-library-card" onclick="openSeriesModal('${item.key}')">
+              <img src="${thumb}" loading="lazy" alt="${item.title}" onerror="if(this.src.includes('maxresdefault.jpg')){this.src=this.src.replace('maxresdefault.jpg','hqdefault.jpg');}">
+              <div class="card-overlay">
+                <div class="card-title-text">${item.title}</div>
+                <div class="card-meta-text">
+                  <span class="card-badge-pill ${badgeClass}">${item.badge}</span>
+                  <span>${count} ตอน</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    renderGrid('grid-bunnies', sectionGroups.bunnies);
+    renderGrid('grid-concerts', sectionGroups.concerts);
+    renderGrid('grid-variety', sectionGroups.variety);
+    renderGrid('grid-seasons', sectionGroups.seasons);
+    renderGrid('grid-originals', sectionGroups.originals);
+    renderGrid('grid-music', sectionGroups.music);
+
+    // Modal Logic (Open Series -> Shows Video + Full Episode List)
+    let currentSeriesKey = null;
+
+    function openSeriesModal(key) {
+      if (typeof officialDatabase === 'undefined' || !officialDatabase[key]) return;
+      currentSeriesKey = key;
+      const cat = officialDatabase[key];
+
+      document.getElementById('modalTitle').textContent = cat.title;
+      document.getElementById('modalBadge').textContent = cat.badge;
+      document.getElementById('modalTotalCount').textContent = `${cat.count} ตอน`;
+      document.getElementById('modalDesc').textContent = cat.desc;
+      document.getElementById('epListStats').textContent = `ทั้งหมด ${cat.count} ตอน`;
+
+      // Render episode list
+      const listContainer = document.getElementById('epListContainer');
+      listContainer.innerHTML = cat.episodes.map((ep, idx) => `
+        <div class="episode-item ${idx === 0 ? 'active' : ''}" id="ep-item-${idx}" onclick="switchEpisode(${idx})">
+          <span class="ep-num">${ep.num}</span>
+          <img src="${ep.thumb}" class="ep-thumb" alt="${ep.title}" onerror="if(this.src.includes('maxresdefault.jpg')){this.src=this.src.replace('maxresdefault.jpg','hqdefault.jpg');}">
+          <div class="ep-details">
+            <h4 class="ep-title">${ep.title}</h4>
+            <span class="ep-duration"><i class="fa-solid fa-play"></i> ความยาว ${ep.duration || 'Full HD'}</span>
+          </div>
+          <i class="fa-regular fa-circle-play ep-play-btn"></i>
+        </div>
+      `).join('');
+
+      // Play first video
+      if (cat.episodes.length > 0) {
+        playEpisodeData(cat.episodes[0]);
+      }
+
+      document.getElementById('modalOverlay').style.display = 'flex';
+    }
+
+    function switchEpisode(index) {
+      if (!currentSeriesKey || !officialDatabase[currentSeriesKey]) return;
+      const cat = officialDatabase[currentSeriesKey];
+      const ep = cat.episodes[index];
+      if (!ep) return;
+
+      document.querySelectorAll('.episode-item').forEach(el => el.classList.remove('active'));
+      const activeEl = document.getElementById(`ep-item-${index}`);
+      if (activeEl) {
+        activeEl.classList.add('active');
+        activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      playEpisodeData(ep);
+    }
+
+    function playEpisodeData(ep) {
+      const container = document.getElementById('modalPlayer');
+      const directBtn = document.getElementById('modalYtDirectLink');
+
+      if (ep.embedUrl) {
+        container.innerHTML = `<iframe src="${ep.embedUrl}" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>`;
+        if (directBtn) {
+          directBtn.href = ep.directUrl || ep.embedUrl;
+          if (ep.title && ep.title.includes('ซับไทย')) {
+            directBtn.innerHTML = '<i class="fa-solid fa-closed-captioning"></i> เปิดลิงก์เต็มจอ (ซับไทย)';
+            directBtn.style.background = '#16a34a';
+          } else {
+            directBtn.innerHTML = '<i class="fa-solid fa-up-right-from-square"></i> เปิดลิงก์เต็มจอ (Full HD)';
+            directBtn.style.background = '#2563eb';
+          }
+        }
+      } else if (ep.ytId) {
+        container.innerHTML = `<iframe src="https://www.youtube.com/embed/${ep.ytId}?autoplay=1&enablejsapi=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>`;
+        if (directBtn) {
+          directBtn.href = `https://www.youtube.com/watch?v=${ep.ytId}`;
+          directBtn.innerHTML = '<i class="fa-brands fa-youtube"></i> ดูบน YouTube โดยตรง';
+          directBtn.style.background = '#ff0000';
+        }
+      }
+    }
+
+    // Single Video Player (for Featured Hero Special)
+    function playSingleVideo(ytId, title, desc, badge = 'SPECIAL MV') {
+      currentSeriesKey = null;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalBadge').textContent = badge;
+      document.getElementById('modalTotalCount').textContent = 'Special Video';
+      document.getElementById('modalDesc').textContent = desc;
+      document.getElementById('epListStats').textContent = '1 วิดีโอ';
+
+      const listContainer = document.getElementById('epListContainer');
+      listContainer.innerHTML = `
+        <div class="episode-item active" onclick="playEpisodeData({ ytId: '${ytId}' })">
+          <span class="ep-num">1</span>
+          <img src="https://img.youtube.com/vi/${ytId}/mqdefault.jpg" class="ep-thumb" alt="${title}">
+          <div class="ep-details">
+            <h4 class="ep-title">${title}</h4>
+            <span class="ep-duration"><i class="fa-solid fa-play"></i> Official Full HD</span>
+          </div>
+          <i class="fa-regular fa-circle-play ep-play-btn"></i>
+        </div>
+      `;
+
+      playEpisodeData({ ytId });
+      document.getElementById('modalOverlay').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').style.display = 'none';
+      document.getElementById('modalPlayer').innerHTML = '';
+      currentSeriesKey = null;
+    }
+
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modalOverlay')) {
+        closeModal();
+      }
+    });
+
+    // Member profiles data & all multilingual keywords
+    const memberData = {
+      Minji: {
+        nameTh: 'มินจี (Minji)',
+        role: 'Kim Minji • 2004',
+        keywords: ['minji', 'มินจี', '민지'],
+        desc: 'คลังคลิปแปลไทย, IG Live, สเตจ และวิดีโอเดี่ยวทั้งหมดของ มินจี (Kim Minji)'
+      },
+      Hanni: {
+        nameTh: 'ฮันนี่ (Hanni)',
+        role: 'Hanni Pham • 2004',
+        keywords: ['hanni', 'ฮันนี่', 'ฮานนิ', '하니'],
+        desc: 'คลังคลิปแปลไทย, IG Live, เพลงคัฟเวอร์ และคอนเทนต์ทั้งหมดของ ฮันนี่ (Hanni Pham)'
+      },
+      Danielle: {
+        nameTh: 'แดเนียล (Danielle)',
+        role: 'Danielle Marsh • 2005',
+        keywords: ['danielle', 'แดเนียล', 'ดาเนียล', 'daniel', '다니엘'],
+        desc: 'คลังคลิปแปลไทย, Live, Vlog และเพลงคัฟเวอร์ทั้งหมดของ แดเนียล (Danielle Marsh)'
+      },
+      Haerin: {
+        nameTh: 'แฮริน (Haerin)',
+        role: 'Kang Haerin • 2006',
+        keywords: ['haerin', 'แฮริน', '해린'],
+        desc: 'คลังคลิปแปลไทย, Live, ไฮไลท์ และคอนเทนต์น้องแมวทั้งหมดของ แฮริน (Kang Haerin)'
+      },
+      Hyein: {
+        nameTh: 'ฮเยอิน (Hyein)',
+        role: 'Lee Hyein • 2008',
+        keywords: ['hyein', 'ฮเยอิน', '혜인'],
+        desc: 'คลังคลิปแปลไทย, Live, Vlogs และคอนเทนต์น้องเล็กทั้งหมดของ ฮเยอิน (Lee Hyein)'
+      }
+    };
+
+    function openMemberModal(memberKey) {
+      const member = memberData[memberKey];
+      if (!member || typeof officialDatabase === 'undefined') return;
+
+      const matchedEpisodes = [];
+      const seenIds = new Set();
+
+      for (const [catKey, cat] of Object.entries(officialDatabase)) {
+        if (!cat || !cat.episodes) continue;
+        for (const ep of cat.episodes) {
+          const title = (ep.title || '').toLowerCase();
+          const epId = ep.ytId || ep.embedUrl;
+          if (!epId || seenIds.has(epId)) continue;
+
+          const isMatch = member.keywords.some(k => title.includes(k.toLowerCase()));
+          if (isMatch) {
+            seenIds.add(epId);
+            matchedEpisodes.push({
+              num: matchedEpisodes.length + 1,
+              title: ep.title,
+              ytId: ep.ytId,
+              embedUrl: ep.embedUrl,
+              directUrl: ep.directUrl,
+              duration: ep.duration || 'Full HD',
+              thumb: ep.thumb || `images/${memberKey.toLowerCase()}.jpg`
+            });
+          }
+        }
+      }
+
+      if (matchedEpisodes.length === 0) {
+        filterByMember(memberKey);
+        return;
+      }
+
+      const dynamicKey = `member_${memberKey.toLowerCase()}`;
+      officialDatabase[dynamicKey] = {
+        id: dynamicKey,
+        title: `🐰 ${member.nameTh} — รวมคลิปและวิดีโอทั้งหมด`,
+        badge: memberKey.toUpperCase(),
+        desc: member.desc,
+        thumb: `images/${memberKey.toLowerCase()}.jpg`,
+        count: matchedEpisodes.length,
+        episodes: matchedEpisodes
+      };
+
+      openSeriesModal(dynamicKey);
+    }
+
+    function filterByMember(name) {
+      openMemberModal(name);
+    }
+
+    // Search filter across all series and episodes with multilingual support
+    function handleSearch(term) {
+      const query = term.trim().toLowerCase();
+      if (!query) {
+        renderGrid('grid-bunnies', sectionGroups.bunnies);
+        renderGrid('grid-concerts', sectionGroups.concerts);
+        renderGrid('grid-variety', sectionGroups.variety);
+        renderGrid('grid-originals', sectionGroups.originals);
+        renderGrid('grid-music', sectionGroups.music);
+        return;
+      }
+
+      // Expand query if searching for a member (e.g. 'ฮันนี่' expands to ['hanni', 'ฮันนี่', '하니'])
+      let searchTerms = [query];
+      for (const m of Object.values(memberData)) {
+        if (m.keywords.some(k => k.toLowerCase().includes(query) || query.includes(k.toLowerCase()))) {
+          searchTerms = [...new Set([...searchTerms, ...m.keywords.map(k => k.toLowerCase())])];
+        }
+      }
+
+      // Filter series cards that match query or contain matching episodes
+      const filterGroup = (items) => (items || []).filter(item => {
+        const cat = officialDatabase[item.key];
+        if (!cat) return false;
+        const matchCat = searchTerms.some(t => (cat.title || '').toLowerCase().includes(t));
+        const matchEp = cat.episodes && cat.episodes.some(ep => {
+          const epTitle = (ep.title || '').toLowerCase();
+          return searchTerms.some(t => epTitle.includes(t));
+        });
+        return matchCat || matchEp;
+      });
+
+      renderGrid('grid-bunnies', filterGroup(sectionGroups.bunnies));
+      renderGrid('grid-concerts', filterGroup(sectionGroups.concerts));
+      renderGrid('grid-variety', filterGroup(sectionGroups.variety));
+      renderGrid('grid-originals', filterGroup(sectionGroups.originals));
+      renderGrid('grid-music', filterGroup(sectionGroups.music));
+    }
+  </script>
+</body>
+</html>
