@@ -850,7 +850,8 @@
     <div class="nav-right">
       <div class="search-container">
         <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        <input type="text" class="search-input" id="searchInput" placeholder="ค้นหาคลิป / ตอน..." oninput="handleSearch(this.value)">
+        <input type="text" class="search-input" id="searchInput" placeholder="ค้นหาคลิป / ตอน..." oninput="handleSearch(this.value)" autocomplete="off">
+        <button id="searchClearBtn" onclick="clearSearch()" style="display:none; position:absolute; right:10px; background:none; border:none; color:var(--text-gray); font-size:16px; cursor:pointer; padding:0; line-height:1;" title="ล้างการค้นหา">&times;</button>
       </div>
       <a href="https://www.youtube.com/@BunniesThailand" target="_blank" class="yt-btn">
         <i class="fa-brands fa-youtube"></i> @BunniesThailand
@@ -899,6 +900,17 @@
 
   <!-- Main Content Area -->
   <main class="content-container">
+
+    <!-- Dedicated Search Results Section (Shows when searching) -->
+    <section class="hf-library-section" id="sec-search-results" style="display: none; padding-top: 24px;">
+      <h2 class="hf-library-title">
+        <span id="searchResultTitle">🔍 ผลการค้นหา</span>
+        <span class="sub-title" id="searchResultCount">พบ 0 รายการ</span>
+      </h2>
+      <div class="hf-library-grid" id="grid-search-results">
+        <!-- Injected by JS -->
+      </div>
+    </section>
 
     <!-- Section 1: @BunniesThailand Originals & ซับไทย -->
     <section class="hf-library-section" id="sec-bunnies">
@@ -1045,8 +1057,8 @@
   </div>
 
   <!-- Load Database -->
-  <script src="db.js?v=20260907_15"></script>
-  <script src="bilibili_db.js?v=20260907_15"></script>
+  <script src="db.js?v=20260907_16"></script>
+  <script src="bilibili_db.js?v=20260907_16"></script>
 
   <script>
     // Navbar scroll effect
@@ -1375,17 +1387,61 @@
       openMemberModal(name);
     }
 
-    // Search filter across all series and episodes with multilingual support
+    function clearSearch() {
+      const input = document.getElementById('searchInput');
+      if (input) {
+        input.value = '';
+        handleSearch('');
+        input.focus();
+      }
+    }
+
+    function openDirectEpisodeModal(seriesKey, epNum) {
+      if (typeof officialDatabase === 'undefined') return;
+      const cat = officialDatabase[seriesKey];
+      if (!cat) return;
+      
+      openSeriesModal(seriesKey);
+      selectEpisode(epNum);
+    }
+
+    // Search filter across all series and individual episodes with multilingual support
     function handleSearch(term) {
-      const query = term.trim().toLowerCase();
+      const query = (term || '').trim().toLowerCase();
+      const clearBtn = document.getElementById('searchClearBtn');
+      if (clearBtn) {
+        clearBtn.style.display = query ? 'block' : 'none';
+      }
+
+      const searchSec = document.getElementById('sec-search-results');
+      const searchGrid = document.getElementById('grid-search-results');
+      const searchTitle = document.getElementById('searchResultTitle');
+      const searchCount = document.getElementById('searchResultCount');
+      const heroSec = document.getElementById('home');
+      
+      const normalSections = [
+        'sec-bunnies', 'sec-concerts', 'sec-variety', 'sec-seasons',
+        'sec-originals', 'sec-music', 'sec-members'
+      ];
+
       if (!query) {
-        renderGrid('grid-bunnies', sectionGroups.bunnies);
-        renderGrid('grid-concerts', sectionGroups.concerts);
-        renderGrid('grid-variety', sectionGroups.variety);
-        renderGrid('grid-originals', sectionGroups.originals);
-        renderGrid('grid-music', sectionGroups.music);
+        if (searchSec) searchSec.style.display = 'none';
+        if (heroSec) heroSec.style.display = '';
+        normalSections.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = '';
+        });
         return;
       }
+
+      // Hide hero and normal sections while searching so results are front-and-center
+      if (heroSec) heroSec.style.display = 'none';
+      normalSections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+
+      if (searchSec) searchSec.style.display = 'block';
 
       // Expand query if searching for a member (e.g. 'ฮันนี่' expands to ['hanni', 'ฮันนี่', '하니'])
       let searchTerms = [query];
@@ -1395,23 +1451,114 @@
         }
       }
 
-      // Filter series cards that match query or contain matching episodes
-      const filterGroup = (items) => (items || []).filter(item => {
-        const cat = officialDatabase[item.key];
-        if (!cat) return false;
-        const matchCat = searchTerms.some(t => (cat.title || '').toLowerCase().includes(t));
-        const matchEp = cat.episodes && cat.episodes.some(ep => {
-          const epTitle = (ep.title || '').toLowerCase();
-          return searchTerms.some(t => epTitle.includes(t));
-        });
-        return matchCat || matchEp;
-      });
+      const results = [];
+      const seenIds = new Set();
 
-      renderGrid('grid-bunnies', filterGroup(sectionGroups.bunnies));
-      renderGrid('grid-concerts', filterGroup(sectionGroups.concerts));
-      renderGrid('grid-variety', filterGroup(sectionGroups.variety));
-      renderGrid('grid-originals', filterGroup(sectionGroups.originals));
-      renderGrid('grid-music', filterGroup(sectionGroups.music));
+      // 1. Search series matching query
+      for (const [catKey, cat] of Object.entries(officialDatabase)) {
+        if (!cat || catKey.startsWith('member_')) continue;
+        const catTitle = (cat.title || '').toLowerCase();
+        if (searchTerms.some(t => catTitle.includes(t))) {
+          results.push({
+            type: 'series',
+            key: catKey,
+            title: cat.title,
+            badge: cat.badge || 'SERIES',
+            thumb: cat.thumb || '',
+            count: cat.count || (cat.episodes ? cat.episodes.length : 0),
+            desc: cat.desc || ''
+          });
+        }
+      }
+
+      // 2. Search individual episodes across all series
+      for (const [catKey, cat] of Object.entries(officialDatabase)) {
+        if (!cat || !cat.episodes || catKey.startsWith('member_')) continue;
+        cat.episodes.forEach(ep => {
+          const epTitle = (ep.title || '').toLowerCase();
+          const epId = ep.ytId || ep.embedUrl || ep.aid || ep.directUrl || `${catKey}_${ep.num}`;
+          if (seenIds.has(epId)) return;
+
+          if (searchTerms.some(t => epTitle.includes(t))) {
+            seenIds.add(epId);
+            let badge = 'ตอนพิเศษ';
+            if (ep.bilibili || (ep.directUrl && ep.directUrl.includes('bilibili'))) {
+              badge = 'Bilibili';
+            } else if (ep.title && ep.title.includes('ซับไทย')) {
+              badge = 'ซับไทย';
+            } else if (ep.duration) {
+              badge = ep.duration;
+            }
+
+            results.push({
+              type: 'episode',
+              seriesKey: catKey,
+              epNum: ep.num,
+              title: ep.title,
+              badge: badge,
+              duration: ep.duration || '',
+              thumb: ep.thumb || cat.thumb || 'images/newjeans_all.jpg',
+              seriesTitle: cat.title
+            });
+          }
+        });
+      }
+
+      if (searchTitle) searchTitle.innerHTML = `🔍 ผลการค้นหาสำหรับ: <span style="color: var(--accent-blue);">"${term}"</span>`;
+      if (searchCount) searchCount.textContent = `พบ ${results.length} รายการ`;
+
+      if (results.length === 0) {
+        if (searchGrid) {
+          searchGrid.innerHTML = `
+            <div style="grid-column: 1 / -1; padding: 60px 20px; text-align: center;">
+              <i class="fa-solid fa-magnifying-glass" style="font-size: 40px; color: var(--accent-blue); margin-bottom: 16px; opacity: 0.6;"></i>
+              <h3 style="color: white; font-size: 18px; margin-bottom: 8px;">ไม่พบรายการที่ตรงกับ "${term}"</h3>
+              <p style="color: var(--text-gray); font-size: 13.5px; max-width: 480px; margin: 0 auto; line-height: 1.6;">
+                ลองค้นหาด้วยชื่อเพลง (เช่น <em>Ditto, OMG, Hype Boy</em>), ชื่อสมาชิก (<em>มินจี, ฮันนี่, แดเนียล, แฮริน, ฮเยอิน</em>) หรือชื่อรายการ (<em>You Quiz, Idol Human Theater</em>)
+              </p>
+            </div>
+          `;
+        }
+        return;
+      }
+
+      if (searchGrid) {
+        searchGrid.innerHTML = results.map(r => {
+          let clickAction = '';
+          let countText = '';
+          let badgeClass = 'badge-sub';
+
+          if (r.type === 'series') {
+            clickAction = `onclick="openSeriesModal('${r.key}')"`;
+            countText = `<span>${r.count} ตอน</span>`;
+          } else {
+            // Escape any quotes in epNum safely
+            const safeEpNum = String(r.epNum).replace(/'/g, "\\'");
+            clickAction = `onclick="openDirectEpisodeModal('${r.seriesKey}', '${safeEpNum}')"`;
+            countText = `<span>${r.duration || r.seriesTitle}</span>`;
+          }
+
+          return `
+            <div class="hf-library-card-animation">
+              <div class="hf-library-card" ${clickAction}>
+                <img src="${r.thumb}" loading="lazy" alt="${r.title}" onerror="if(this.src.includes('maxresdefault.jpg')){this.src=this.src.replace('maxresdefault.jpg','hqdefault.jpg');}">
+                <div class="card-overlay">
+                  <div class="card-title-text">${r.title}</div>
+                  <div class="card-meta-text">
+                    <span class="card-badge-pill ${badgeClass}">${r.badge}</span>
+                    ${countText}
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Smoothly scroll to search results section if user has scrolled
+      if (searchSec && window.scrollY > 80) {
+        searchSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   </script>
 </body>
